@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block layin %}
+<br>
+<br>
+
+<article class="uk-article">
+
+    <h1 class="uk-article-title">{{build.headline}}</h1>
+
+    <p class="uk-article-meta">{{build.writer}} {{build.pub_date.day}}/{{build.pub_date.month}}/{{build.pub_date.year}}</p>
+
+    <p class="uk-text-lead">{{build.explanation}}</p>
+    
+    <p id='texttype'hidden>{{build.buildorder}}</p>
+        <ul id='listtype'class="uk-list" hidden>
+   {% for build_list in build_list %}
+   {% if build_list == " " %}
+   
+   {% else %}
+    <li>{{build_list}}</li>
+   {% endif %}
+    {% endfor %}
+    
+    </ul> 
+    <p uk-margin>
+    <button class="uk-button uk-button-default" uk-toggle="target: #texttype" type="button" aria-expanded="false">Text Şeklinde  Gör</button>
+    <button class="uk-button uk-button-default" uk-toggle="target: #listtype" type="button" aria-expanded="false">Liste Şeklinde Gör</button>
+    </p>
+    <br><br><br><br><br><br>
+    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+        <div>
+            <a href="{% url 'builds:voteplus' build.id%}"><span class="material-icons " style="font-size:30px">
+              thumb_up
+            </span></a>
+        </div>
+        <div>
+            {% if build.vote > 0 %}
+            <h3 style="color:green">{{build.vote}}</h3>
+            {% else %}
+            <h3 style="color:red">{{build.vote}}</h3>
+            {% endif %}
+        </div>
+        <div>
+            <a href="{% url 'builds:voteminus' build.id%}"><span class="material-icons " style="font-size:30px;color:red">
+            thumb_down
+          </span></a>
+        </div>
+        <div>
+        {% if key == 1 %}
+        <a href="{% url 'builds:changebuild' build.id %}"><button class="uk-button uk-button-default">Değiştir</button></a>
+        {% else %}
+        {% endif %}
+        </div>
+    </div>
+
+</article>
+<h3>Yorumlar</h3>
+<hr>
+{% if key == 1 or key == 2 %}
+<button class="uk-button uk-button-default" uk-toggle="target: #my-id" type="button" aria-expanded="false">Yorum Yap</button>
+<form  class="uk-form-stacked" action="{%url 'builds:detail' build.id%}" method='post' id="my-id"hidden>
+  {% csrf_token%}
+    <div class="uk-margin">
+            <input class="uk-input uk-form-width-small" type="text" value="{{user.username}}" readonly>
+        </div>
+
+        <div class="uk-margin">
+            <textarea class="uk-textarea" name="comment" rows="5" placeholder="Yorumunuzu girin..."></textarea>
+        </div>
+      <button type="submit" class="uk-button uk-button-default">Yorumu Yayınla</button>
+</form>
+{% else %}
+{% endif %}
+<hr>
+
+<ul class="uk-comment-list">
+  {% for comment in comments %}
+  
+    <li>
+        <article class="uk-comment uk-visible-toggle" tabindex="-1">
+            <header class="uk-comment-header uk-position-relative">
+                <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{comment.comuser.username}}</a></h4>
+                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">{{comment.pub_date.day}}/{{comment.pub_date.month}}/{{comment.pub_date.year}}</a></p>
+                    </div>
+                </div>
+            </header>
+            <div class="uk-comment-body">
+                <p>{{comment.comtext}}</p>
+            </div>
+        </article>
+    </li>
+     {% endfor %}
+</ul>
+
+<br>
+<br>
+
+
+  {% endblock layin %}

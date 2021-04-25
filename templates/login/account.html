@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block layin %}
+<br>
+<br>
+<h2>Merhaba {{current_user.username}},</h2>
+<hr>
+<form action="{%url 'basemap:account' %}" method='post'>
+  {% csrf_token%}
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text"><strong>İsim</strong></label>
+        <div class="uk-form-controls">
+          <input class="uk-input uk-form-width-medium" type="text" name="first_name" value="{{ current_user.first_name }}" placeholder="{{ current_user.first_name }}"class="form-control">
+            <button class="uk-button uk-button-default"type="submit">Kaydet</button>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text"><strong>Soyisim</strong></label>
+        <div class="uk-form-controls">
+          <input class="uk-input uk-form-width-medium" type="text"  name="last_name" value="{{current_user.last_name }}" placeholder="{{current_user.last_name }}" class="form-control">
+             <button class="uk-button uk-button-default"type="submit">Kaydet</button>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text"><strong>E-Mail</strong></label>
+        <div class="uk-form-controls">
+          <input class="uk-input uk-form-width-medium" type="email"  name="email" value="{{current_user.email }}" placeholder="{{current_user.email }}" class="form-control">
+             <button class="uk-button uk-button-default"type="submit">Kaydet</button>
+        </div>
+    </div>
+</form>
+<hr>
+<form class="uk-form-horizontal uk-margin-large" action="{%url 'basemap:passwordchange' %}" method='post'>
+  {% csrf_token%}
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Şifre Değiştir</label>
+        <div class="uk-form-controls">
+            <input class="uk-input uk-form-width-medium" id="form-horizontal-text" name="changedpw1"type="password" >
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Tekrar girin</label>
+        <div class="uk-form-controls">
+            <input class="uk-input uk-form-width-medium" id="form-horizontal-text"name="changedpw2" type="password">
+        </div>
+    </div>
+    <button class="uk-button uk-button-default"type="submit">Kaydet</button>
+  </form>
+<hr>
+{% endblock layin %}

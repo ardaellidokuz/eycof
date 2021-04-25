@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block layin %}
+<br>
+<br>
+<div class="uk-margin ml-auto">
+    <form action="{%url 'builds:search' %}" method='post' class="uk-search uk-search-default">
+        {% csrf_token%}
+        <button class="uk-search-icon-flip" uk-search-icon type="submit"></button>
+        <input class="uk-search-input" name="search"type="search" placeholder="Build Order">
+    </form>
+</div>
+<h2>Son Eklenenler</h2>
+<hr>
+<div class="uk-slider-container-offset" style="autoplay:True;autoplay-interval:4000" uk-slider>
+
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+        <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-grid">
+          {% for buildorders in latest_order_list %}  
+          {% if buildorders.approved %}
+          
+          
+            <li>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title"><a  style="color:#000000;border-color:rgba(255, 0, 0, 0.39);" href="{% url 'builds:detail' buildorders.id%}">{{buildorders.headline}}</a><br><small style="font-size:17px;">-{{buildorders.pub_date.day}}/{{buildorders.pub_date.month}}/{{buildorders.pub_date.year}}</small></h3>
+                        <p>{{buildorders.explanation}}</p>
+                        <figcaption class="blockquote-footer"><cite title="Source Title">{{buildorders.writer}}</cite>
+                        </figcaption>
+                    </div>
+                </div>
+            </li>
+            {% else %}
+          {% endif %}
+            {% endfor %}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+</div>
+<h2>Çağa Göre</h2>
+<hr>
+<div class="uk-slider-container-offset" style="autoplay:True;autoplay-interval:4000" uk-slider>
+
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+        <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-grid">
+        {% for recent_4_age in recent_4_age %}
+        
+          {% for buildorders in recent_4_age %} 
+            {% if buildorders.approved %}
+
+            
+            
+            <li>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title"><a  style="color:#000000;border-color:rgba(255, 0, 0, 0.39);" href="{% url 'builds:detail' buildorders.id%}">{{buildorders.headline}}</a><br><small style="font-size:17px;">-{{buildorders.age}}</small></h3>
+                        <p>{{buildorders.explanation}}</p>
+                        <figcaption class="blockquote-footer"><cite title="Source Title">{{buildorders.writer}}</cite>
+                        </figcaption>
+                        </div>
+                </div>
+            {% else %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+</div>
+<h2>En Çok Beğenilenler</h2>
+<hr>
+<div class="uk-slider-container-offset" style="autoplay:True;autoplay-interval:4000" uk-slider>
+
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+        <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-grid">
+          {% for buildorders in top_10 %} 
+            {% if buildorders.approved %}
+
+            <li>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title"><a  style="color:#000000;border-color:rgba(255, 0, 0, 0.39);" href="{% url 'builds:detail' buildorders.id%}">{{buildorders.headline}}</a><br>
+                        {% if builderorder.vote < 1 %}
+                        <span style="color:red;font-size:17px">{{buildorders.vote}}<span></h3>
+                        {% else %}
+                        <span style="color:green;font-size:17px">{{buildorders.vote}}<span></h3>
+                        {% endif %}
+                        
+                        <p>{{buildorders.explanation}}</p>
+                        <figcaption class="blockquote-footer"><cite title="Source Title">{{buildorders.writer}}</cite>
+                        </figcaption>
+                    </div>
+                </div>
+            {% else %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+</div>
+{% endblock layin %}

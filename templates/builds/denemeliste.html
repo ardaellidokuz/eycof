@@ -1,0 +1,10 @@
+<ul uk-accordion="multiple: true">
+    {% for list,detay in build_list  %}
+    <li class="uk-open">
+        <a class="uk-accordion-title" href="#">{{list}}</a>
+        <div class="uk-accordion-content">
+            <p>{{detay}}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

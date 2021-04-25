@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block layin %}
+<br>
+<br>
+<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+    {% for buildorders in search_list %}
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">
+                <a class="uk-card-title" style="color:#000000;border-color:rgba(255, 0, 0, 0.39);" href="{% url 'builds:detail' buildorders.id%}">{{buildorders.headline}}</a>
+                <p>{{buildorders.explanation}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock layin %}

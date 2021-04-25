@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block layin2 %}
+<form action="{%url 'basemap:register'%}" method='post'>
+{% csrf_token%}
+<section class="uk-section uk-section-xsmall" uk-height-viewport="offset-top: true" style="box-sizing: border-box; min-height: calc(-131px + 100vh);">
+	<div class="uk-container">
+		<div class="uk-flex uk-flex-center">
+			<div class="uk-card uk-card-default uk-card-hover uk-card-body uk-width-large">
+				<h3>Kayıt Ol</h3>
+				<form class="uk-form-stacked" action="" method="post">
+					<div class="uk-margin">
+						<label class="uk-form-label" for="username">
+							Kullancı Adı
+						</label>
+						<div class="uk-form-controls">
+							<div class="uk-inline uk-width-1-1">
+								<a class="uk-form-icon uk-form-icon-flip" uk-tooltip="title: Alpha-numeric characters.<br>Minimum 3 characters.<br>Maximum 16 characters.<br>This field is required.; pos: bottom-right" title="" aria-expanded="false"><svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> --></a>
+								<input class="uk-input" id="username" name="username" type="text"required>
+							</div>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="email">
+							Email
+						</label>
+						<div class="uk-form-controls">
+							<div class="uk-inline uk-width-1-1">
+								<a class="uk-form-icon uk-form-icon-flip" uk-tooltip="title: Must be a valid email.<br>One account per email.<br>This field is required.; pos: bottom-right" title="" aria-expanded="false"><svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> --></a>
+								<input class="uk-input" id="email" name="email" type="text"required>
+							</div>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="password">
+							Şifre
+						</label>
+						<div class="uk-form-controls">
+							<div class="uk-inline uk-width-1-1">
+								<a class="uk-form-icon uk-form-icon-flip" uk-tooltip="title: Minimum 8 characters.<br>This field is required.; pos: bottom-right" title="" aria-expanded="false"><svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> --></a>
+								<input class="uk-input" id="password" name="password" type="password"required>
+							</div>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="repeat_password">
+							Şifreyi Tekrarlayın
+						</label>
+						<div class="uk-form-controls">
+							<div class="uk-inline uk-width-1-1">
+								<a class="uk-form-icon uk-form-icon-flip" uk-tooltip="title: Must match the password field.<br>This field is required.; pos: bottom-right" title="" aria-expanded="false"><svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> --></a>
+								<input class="uk-input" id="repeat_password" name="repeat_password" type="password"required>
+							</div>
+						</div>
+					</div>
+					<div class="uk-margin">
+					</div>
+					<button class="uk-button uk-button-primary uk-width-1-1" type="submit">Kayıt Ol</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock layin2 %}

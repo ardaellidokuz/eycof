@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block layin %}
+<br>
+<br>
+
+<form class="uk-form-stacked" action= "{%url 'builds:add'%}" method="post">
+{% csrf_token%}
+        <div class="uk-margin">
+            <input class="uk-input uk-form-width-small" type="text" name="writer" id="writer" value="{{user}}" readonly>
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="headline" id="headline" placeholder="Başlık" required>
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="exp" id="exp" placeholder="Açıklama"  required>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Çağ</label>
+                <div class="uk-form-controls">
+                    <select class="uk-select" name="age" id="form-stacked-select">
+                        <option value="Dark Age">Dark Age</option>
+                        <option value="Feudal Age">Feudal Age</option>
+                        <option value="Castle Age">Castle Age</option>
+                        <option value="Imperial Age">Imperial Age</option>
+                        <option value="Post Imperial Age">Post Imperial Age</option>
+                    </select>
+                </div>
+            </div>
+            <p uk-margin>
+
+        <button class="uk-button uk-button-default" uk-toggle="target: #texttype" type="button" aria-expanded="false">Text Şeklinde  Yaz</button>
+        <button class="uk-button uk-button-default" uk-toggle="target: #listtype" type="button" aria-expanded="false">Liste Şeklinde Yaz</button>
+        </p>
+        <div class="uk-margin" id='texttype' hidden>
+            <textarea class="uk-textarea" name="buildorder" id="buildorder" rows="5" placeholder="Build order'ınızı girin"></textarea>
+        </div>
+        <div class="uk-form-stacked"  id="listtype" hidden>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list1" id="exp"   >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list2"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list3"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list4"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list5" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list6"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list7"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list8" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list9" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list10"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list11" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list12" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list13"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list14"  placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list15" placeholder=""  >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list16" placeholder="" >
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list17"  placeholder="" >
+        </div>
+    </div>
+    <br>
+      <button type="submit" style="float: right;" class="uk-button uk-button-default">Yayınla</button>
+</form>
+
+
+
+
+
+
+{% endblock layin %}
+
+
+
+
+
+
+
+
+

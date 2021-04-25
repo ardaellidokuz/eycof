@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block layin %}
+<h1> Build Order Değiştir</h1>
+<hr>
+<form class="uk-form-stacked" action= "{%url 'builds:changebuild' build.id%}" method="post">
+{% csrf_token%}
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Yazar</label>
+            <input class="uk-input uk-form-width-small" type="text" name="writer" id="writer" value="{{build.writer}}"  readonly>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Başlık</label>
+            <input class="uk-input" type="text" name="headline" id="headline" value="{{build.headline}}"required>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Açıklama</label>
+            <input class="uk-input" type="text" name="exp" id="exp" value="{{build.explanation}}" required>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Çağ</label>
+                <div class="uk-form-controls">
+                    <select class="uk-select" name="age" value="{{build.age}}"id="form-stacked-select">
+                        <option value="Dark Age">Dark Age</option>
+                        <option value="Feudal Age">Feudal Age</option>
+                        <option value="Castle Age">Castle Age</option>
+                        <option value="Imperial Age">Imperial Age</option>
+                        <option value="Post Imperial Age">Post Imperial Age</option>
+                    </select>
+                </div>
+            </div>
+        <p uk-margin>
+        <button class="uk-button uk-button-default" uk-toggle="target: #texttype" type="button" aria-expanded="false">Text Şeklinde Değiştir</button>
+        <button class="uk-button uk-button-default" uk-toggle="target: #listtype" type="button" aria-expanded="false">Liste Şeklinde Değiştir</button>
+        </p>
+        <div class="uk-margin" id='texttype' hidden>
+            <textarea class="uk-textarea" name="buildorder" id="buildorder" rows="5" value="{{build.buildorder}}"></textarea>
+        </div>
+        <div class="uk-form-stacked"  id="listtype" hidden>
+        {% for build_list,row in build_list  %}
+        
+       
+        <div class="uk-margin">
+            <input class="uk-input" type="text" name="list{{row}}" value="{{build_list}}" id="exp"   >
+        </div>
+         {% endfor %}
+    </div>
+    <br>
+    <p uk-margin>
+<button type="submit" class="uk-button uk-button-default">Değiştir</button>
+<div class="uk-inline">
+    <button class="uk-button uk-button-danger" type="button">Sil</button>
+    <div uk-dropdown>
+        <ul class="uk-nav uk-dropdown-nav">
+            <li class="uk-nav-header">Bu işlem Build Orderınızı silecektir.</li>
+            <li> <a style='color:red;'href="{% url 'builds:deletebuild' build.id%}">Sil</a></li>
+        </ul>
+    </div>
+</div>
+</p>
+</form>
+  
+  
+  
+  {% endblock layin %}
